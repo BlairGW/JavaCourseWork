@@ -25,7 +25,7 @@ public class Player {
     }
     
 
-    void stun(Enemy01 target, int diceRoll, int currentTurn){
+    void  stun(Enemy01 target, int diceRoll, int currentTurn){
         if (diceRoll >= 6){
             System.out.println(diceRoll + "        Roll Successful!");
             System.out.println(name + " attempts to stun " + target.name);

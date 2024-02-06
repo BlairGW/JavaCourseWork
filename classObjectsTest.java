@@ -27,6 +27,7 @@ public class classObjectsTest {
                     currentTurn = 1;
                 } else if (userAttack.equalsIgnoreCase("STUN")) {
                     p1.stun(e1, diceRoll, currentTurn);
+                    System.out.println(currentTurn);
                 }
                 
             } else {
