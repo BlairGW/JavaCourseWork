@@ -4,4 +4,5 @@ public class BattleManager {
     BattleManager() {
         turnTracker = 0;
     }
+    
 }

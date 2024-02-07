@@ -10,6 +10,8 @@ public class Player {
         currentHealth = maxHealth;
         atk = 5;
         def = 9;
+
+        //Sword sword = new sword();
     }
 
     void attack(Enemy01 target, int diceRoll, BattleManager battleManager){
