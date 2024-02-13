@@ -11,12 +11,12 @@ public class Player {
         currentHealth = maxHealth;
         atk = 5;
         def = 9;
-
-        //Sword sword = new sword();
     }
 
+    //Player basic attack
     void attack(Enemy01 target, int diceRoll, int turnTracker){
         if (diceRoll >= target.def){
+            //Dialog to show attack plus some debug info. This needs cleaned up
             System.out.println(diceRoll + "        Roll Successful!");
             System.out.println(name + " attacks " + target.name);
             System.out.println(target.name + " took " + atk + " damage!");
@@ -29,8 +29,10 @@ public class Player {
     }
     
 
+    //Player stun attack
     void  stun(Enemy01 target, int diceRoll, BattleManager battleManager){
         if (diceRoll >= target.def){
+            //Dialog to show attack plus some debug info. This needs cleaned up
             System.out.println(diceRoll + "        Roll Successful!");
             System.out.println(name + " attempts to stun " + target.name);
             System.out.println(target.name + " took " + 1 + " damage!");

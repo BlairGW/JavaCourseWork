@@ -5,6 +5,8 @@ public class Enemy01 {
     int atk;
     int def;
 
+    //This is basic Im not doing comments for it :)
+
     Enemy01(){
         name = "Enemy";
         maxHealth = 30;
