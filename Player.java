@@ -29,7 +29,7 @@ public class Player {
     }
     
 
-    void  stun(Enemy01 target, int diceRoll, int turnTracker){
+    void  stun(Enemy01 target, int diceRoll, BattleManager battleManager){
         if (diceRoll >= target.def){
             System.out.println(diceRoll + "        Roll Successful!");
             System.out.println(name + " attempts to stun " + target.name);
@@ -38,7 +38,7 @@ public class Player {
             System.out.println("Their Heath is now at " + target.currentHealth);  
         } else {
             System.out.println(diceRoll + "      Roll Failed!");
-            turnTracker = 1;
+            battleManager.turnTracker = 1;
         }
     }
 }
