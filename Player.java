@@ -6,6 +6,7 @@ public class Player {
     int def;
 
     Player(){
+        name = "Player";
         maxHealth = 50;
         currentHealth = maxHealth;
         atk = 5;
@@ -14,30 +15,30 @@ public class Player {
         //Sword sword = new sword();
     }
 
-    void attack(Enemy01 target, int diceRoll, BattleManager battleManager){
+    void attack(Enemy01 target, int diceRoll, int turnTracker){
         if (diceRoll >= target.def){
             System.out.println(diceRoll + "        Roll Successful!");
             System.out.println(name + " attacks " + target.name);
-            System.out.println(target.name + " took " + target.atk + " damage!");
+            System.out.println(target.name + " took " + atk + " damage!");
             target.currentHealth -= atk;
             System.out.println("Their Heath is now at " + target.currentHealth);  
         } else{
             System.out.println(diceRoll + "      Roll Failed!");
         }
-        battleManager.turnTracker = 1;
+        turnTracker = 1;
     }
     
 
-    void  stun(Enemy01 target, int diceRoll, BattleManager battleManager) {
-        if (diceRoll >= 6){
+    void  stun(Enemy01 target, int diceRoll, int turnTracker){
+        if (diceRoll >= target.def){
             System.out.println(diceRoll + "        Roll Successful!");
             System.out.println(name + " attempts to stun " + target.name);
-            System.out.println(target.name + " took " + target.atk + " damage!");
+            System.out.println(target.name + " took " + 1 + " damage!");
             target.currentHealth -= 1;
             System.out.println("Their Heath is now at " + target.currentHealth);  
         } else {
             System.out.println(diceRoll + "      Roll Failed!");
-            battleManager.turnTracker = 1;
+            turnTracker = 1;
         }
     }
 }
