@@ -1,47 +1,57 @@
 public class Player {
-    String name;
-    int maxHealth;
-    int currentHealth;
-    int atk;
-    int def;
+  public String Name;
+  public String Type;
+  public int maxHealth;
+  public String weaponName;
+  public int Atk;
 
-    Player(){
-        name = "Player";
-        maxHealth = 50;
-        currentHealth = maxHealth;
-        atk = 5;
-        def = 9;
-    }
+  public Player() {
+    Name = "";
+    maxHealth = 0;
+    weaponName = "Null";
+    Atk = 0;
+    Type = "...";
 
-    //Player basic attack
-    void attack(Enemy01 target, int diceRoll, int turnTracker){
-        if (diceRoll >= target.def){
-            //Dialog to show attack plus some debug info. This needs cleaned up
-            System.out.println(diceRoll + "        Roll Successful!");
-            System.out.println(name + " attacks " + target.name);
-            System.out.println(target.name + " took " + atk + " damage!");
-            target.currentHealth -= atk;
-            System.out.println("Their Heath is now at " + target.currentHealth);  
-        } else{
-            System.out.println(diceRoll + "      Roll Failed!");
-        }
-        turnTracker = 1;
-    }
-    
+  }
 
-    //Player stun attack
-    void  stun(Enemy01 target, int diceRoll, BattleManager battleManager){
-        if (diceRoll >= target.def){
-            //Dialog to show attack plus some debug info. This needs cleaned up
-            System.out.println(diceRoll + "        Roll Successful!");
-            System.out.println(name + " attempts to stun " + target.name);
-            System.out.println(target.name + " took " + 1 + " damage!");
-            target.currentHealth -= 1;
-            System.out.println("Their Heath is now at " + target.currentHealth);  
-        } else {
-            System.out.println(diceRoll + "      Roll Failed!");
-            battleManager.turnTracker = 1;
-        }
-    }
+  public String getName() {
+    return Name;
+  }
+
+  public void setName(String name) {
+    Name = name;
+  }
+
+  public String getType() {
+    return Type;
+  }
+
+  public void setType(String Type) {
+    this.Type = Type;
+  }
+
+  public int getMaxHealth() {
+    return this.maxHealth;
+  }
+
+  public void setMaxHealth(int maxHealth) {
+    this.maxHealth = maxHealth;
+  }
+
+  public String getWeaponName() {
+    return weaponName;
+  }
+
+  public void setWeaponName(String weaponName) {
+    this.weaponName = weaponName;
+  }
+
+  public int getAtk() {
+    return Atk;
+  }
+
+  public void setAtk(int atk) {
+    Atk = atk;
+  }
+
 }
-
