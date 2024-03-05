@@ -1,5 +1,3 @@
-import java.lang.Math;
-
 import javax.swing.JOptionPane;
 public class BattleManager {
 
@@ -15,26 +13,27 @@ public class BattleManager {
     if (rand == 1) {
       //Could add randomisation for some of these fields to make more fun
       //Initalises enemy to allow for fight with Their given data
-      enemy = new Enemy("Evil Orc", 25, "Fists", 5);
+      enemy = new Enemy("Evil Orc", 25, "Fists", 5, "Sword of the Kings Cross");
     } else if (rand == 2) {
       //Initalises enemy to allow for fight with Their given data
-      enemy = new Enemy("Dark Mage", 15, "Fireball", 15);
+      enemy = new Enemy("Dark Mage", 15, "Fireball", 15, "Bow of God");
     } else {
       //Initalises enemy to allow for fight with Their given data
-      enemy = new Enemy("Dark Knight", 32, "Sword", 10);
+      enemy = new Enemy("Dark Knight", 32, "Sword", 10, "Fire flames of hell");
     }
     //returns blank instance of enemy
+
     return enemy;
   }
   public static void Encounter(Player player) {
     //This stores the selected values into enemy for manipulation within fighting
     Enemy enemy = BattleManager.enemySelection();
     //Checks name of type to then give dialog
-    if (enemy.Type.equals("Evil Orc")) {
+    if (enemy.Type.compareTo("Evil Orc") == 0) {
       Dialog.Encounter(player, enemy);
-    } else if (enemy.Type.equals("Dark Mage")) {
+    } else if (enemy.Type.compareTo("Dark Mage") == 0) {
       Dialog.Encounter(player, enemy);
-    } else if (enemy.Type.equals("Dark Knight")) {
+    } else if (enemy.Type.compareTo("Dark Knight") == 0) {
       Dialog.Encounter(player, enemy);
     }
 
@@ -45,6 +44,9 @@ public class BattleManager {
     int input;
     //Checks turn of user
     Boolean yourTurn = false;
+
+    int critical = 2;
+    Weakness(player, enemy);
     //Local instances of the player and enemies respective health
     int yourHealth = player.maxHealth;
     int enemyHealth = enemy.maxHealth;
@@ -62,8 +64,13 @@ public class BattleManager {
     //Repeats until you or enemy dies
     while (yourHealth > 0 && enemyHealth > 0) {
       if (yourTurn == true) {
-        enemyHealth -= player.Atk;
-        JOptionPane.showMessageDialog(null, "You Hit Him, his remaning HP : " + enemyHealth);
+        if (Weakness(player, enemy) == true) {
+          enemyHealth -= player.Atk * critical;
+          JOptionPane.showMessageDialog(null, "You CRITICALLY Hit Him, his remaning HP : " + enemyHealth);
+        } else {
+          enemyHealth -= player.Atk;
+          JOptionPane.showMessageDialog(null, "You Hit Him, his remaning HP : " + enemyHealth);
+        }
         //Sleep function
         try {
           Thread.sleep(1200);
@@ -99,5 +106,14 @@ public class BattleManager {
     }
 
   }
+  //Returns boolean value to verify enemies weakness
+  public static boolean Weakness(Player player, Enemy enemy) {
+    boolean multiplier = false;
+    if (enemy.Weakness.compareTo(player.weaponName) == 0) {
+      multiplier = true;
+      System.out.println("Multiplier Active");
+    }
+    return multiplier;
 
+  }
 }
