@@ -41,26 +41,19 @@ public class BattleManager {
   //Method for allowing player and enemy to fight using constructor data
   public static void Fight(Player player, Enemy enemy) {
     //Used for showConfirmDialog
-    int input;
+
     //Checks turn of user
-    Boolean yourTurn = false;
+    boolean yourTurn = false;
 
     int critical = 2;
     Weakness(player, enemy);
     //Local instances of the player and enemies respective health
     int yourHealth = player.maxHealth;
     int enemyHealth = enemy.maxHealth;
-    //Depending on input value will depend on value, 0=Yes 1=No 2=Cancel
-    input = JOptionPane.showConfirmDialog(null, "Would you like to roll first ?");
-    if (input == 0) {
-      yourTurn = true;
+    yourTurn = diceDecide(yourTurn);
 
-    } else if (input == 1) {
-      yourTurn = false;
 
-    } else {
-      System.exit(0);
-    }
+    
     //Repeats until you or enemy dies
     while (yourHealth > 0 && enemyHealth > 0) {
       if (yourTurn == true) {
@@ -75,7 +68,6 @@ public class BattleManager {
         try {
           Thread.sleep(1200);
         } catch (InterruptedException e) {
-
           e.printStackTrace();
         }
         //Sets enemy turn
@@ -116,4 +108,33 @@ public class BattleManager {
     return multiplier;
 
   }
+  public static Boolean diceDecide(boolean yourTurn)
+  {
+    int input;
+    int pDice = 0;
+    int eDice = 0;
+      //Depending on input value will depend on value, 0=Yes 1=No 2=Cancel
+        input = JOptionPane.showConfirmDialog(null, "Would you like to roll first ?");
+    if (input == 0) {
+      pDice = (int)(Math.random()*6 +1);
+      eDice = (int)(Math.random()*6 +1);
+    }
+    else if(input == 1){
+      eDice = (int)(Math.random()*6 +1);
+      pDice = (int)(Math.random()*6 +1);
+    }
+    if (pDice >= eDice) {
+      yourTurn = true;
+      JOptionPane.showMessageDialog(null, "You won the roll, You get to attack first!");
+    }
+    else if(eDice >= pDice)
+    {
+      yourTurn = false;
+      JOptionPane.showMessageDialog(null, "You lost the roll, You will get hit first    L   ");
+    }
+    else{System.out.println("failed");}
+    return yourTurn;
+  }
+
+
 }

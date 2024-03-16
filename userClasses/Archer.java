@@ -4,8 +4,8 @@ public class Archer {
 //Sets inital vairables 
     private String Type;
     private int maxHealth;
-    private int Atk;
     private String weaponName;
+    private int Atk;
 
     //Applies default data to variables
     public Archer()

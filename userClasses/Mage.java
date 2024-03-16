@@ -7,6 +7,7 @@ public class Mage {
     private int Atk;
     private String weaponName;
 
+
     //Applies default data to variables
     public Mage()
     {
