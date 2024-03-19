@@ -59,10 +59,10 @@ public class BattleManager {
       if (yourTurn == true) {
         if (Weakness(player, enemy) == true) {
           enemyHealth -= player.Atk * critical;
-          Dialog.displayMessage("You CRITICALLY Hit Him, his remaning HP : " + enemyHealth);
+          Dialog.displayMessage("You got a CRITICAL hit on the " + enemy.Type + "\nEnemy's Remaining HP: " + enemyHealth);
         } else {
           enemyHealth -= player.Atk;
-          Dialog.displayMessage("You Hit Him, his remaning HP : " + enemyHealth);
+          Dialog.displayMessage("You hit the " + enemy.Type + "\nEnemy's Remaining HP: " + enemyHealth);
         }
         //Sleep function
         try {
@@ -74,7 +74,7 @@ public class BattleManager {
         yourTurn = false;
       } else {
         yourHealth -= enemy.Atk;
-        Dialog.displayMessage("YOUR HIT, Your remaning HP :  " + yourHealth);
+        Dialog.displayMessage("You have been hit\nYour Remaining HP: " + yourHealth);
         //Sleep function
         try {
           Thread.sleep(1200);
@@ -90,7 +90,7 @@ public class BattleManager {
     //Finds winner of fight
     if (enemyHealth <= 0) {
 
-      Dialog.displayMessage(enemy.Type + " Has been Defeated ");
+      Dialog.displayMessage("The " + enemy.Type + " has been Defeated");
     } else {
 
       Dialog.displayMessage(player.Name + " Has been Defeated   G_G");
