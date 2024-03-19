@@ -1,19 +1,18 @@
 package userClasses;
 
 public class Mage {
-        //Sets inital vairables 
+    //Sets inital vairables 
     private String Type;
     private int maxHealth;
     private int Atk;
-    private String weaponName;
-
+    private Weapons weapon;
 
     //Applies default data to variables
     public Mage()
     {
         this.Type ="Mage";
         this.maxHealth = 35;
-        this.weaponName = "Fire flames of hell";
+        this.weapon = Weapons.STAFF;
         this.Atk = 15;
     }
     //Getters and setters for later manipulation
@@ -32,15 +31,23 @@ public class Mage {
     public void setMaxHealth(int maxHealth) {
         this.maxHealth = maxHealth;
     }
+
+    public Weapons getWeaponType() {
+        return weapon;
+    }
+
+    public void setWeaponType(Weapons weapon) {
+        this.weapon = weapon;
+    }
+
     public String getWeaponName() {
-        return weaponName;
-    }
-    public void setWeaponName(String weaponName) {
-        this.weaponName = weaponName;
-    }
+        return weapon.getDefaultName();
+    } 
+
     public int getAtk() {
         return Atk;
     }
+
     public void setAtk(int atk) {
         this.Atk = atk;
     }

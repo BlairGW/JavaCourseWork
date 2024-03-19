@@ -5,17 +5,17 @@ public class Knight {
     private String Type;
     private int Atk;
     private int maxHealth;
-    private String weaponName;
+    private Weapons weapon;
 
     //Applies default data to variables
     public Knight()
     {
         this.Type ="Knight";
         this.maxHealth = 50;
-        this.weaponName = "Sword of the Kings Cross";
+        this.weapon = Weapons.SWORD;
         this.Atk = 10;
     }
-//Getters and setters for later manipulation
+    //Getters and setters for later manipulation
     public String getType() {
         return Type;
     }
@@ -31,12 +31,19 @@ public class Knight {
     public void setMaxHealth(int MaxHealth) {
         this.maxHealth = MaxHealth;
     }
+
+    public Weapons getWeaponType() {
+        return weapon;
+    }
+
+    public void setWeaponType(Weapons weapon) {
+        this.weapon = weapon;
+    }
+
     public String getWeaponName() {
-        return weaponName;
-    }
-    public void setWeaponName(String weaponName) {
-        this.weaponName = weaponName;
-    }
+        return weapon.getDefaultName();
+    } 
+
     public int getAtk() {
         return Atk;
     }

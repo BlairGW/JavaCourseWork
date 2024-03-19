@@ -31,4 +31,14 @@ public class Dialog {
     BattleManager.Fight(player, enemy);
   }
 
+  public static void displayMessage(String message) {
+    JOptionPane.showMessageDialog(null, message);
+  }
+
+  public static int displayConfirmationMessage(String message) {
+    int input;
+    input = JOptionPane.showConfirmDialog(null, message);
+    return input;
+  }
+
 }
