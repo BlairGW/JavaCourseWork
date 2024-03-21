@@ -1,10 +1,10 @@
 package userClasses;
 
 public class Archer {
-//Sets inital vairables 
+    //Sets inital vairables 
     private String Type;
     private int maxHealth;
-    private String weaponName;
+    private Weapons weapon;
     private int Atk;
 
     //Applies default data to variables
@@ -12,10 +12,10 @@ public class Archer {
     {
         this.Type ="Archer";
         this.maxHealth = 40;
-        this.weaponName = "Bow of God";
+        this.weapon = Weapons.BOW;
         this.Atk = 12;
     }
-//Getters and setters for later manipulation
+    //Getters and setters for later manipulation
     public String getType() {
         return this.Type;
     }
@@ -31,15 +31,23 @@ public class Archer {
     public void setMaxHealth(int maxHealth) {
         this.maxHealth = maxHealth;
     }
+
+    public Weapons getWeaponType() {
+        return weapon;
+    }
+
+    public void setWeaponType(Weapons weapon) {
+        this.weapon = weapon;
+    }
+
     public String getWeaponName() {
-        return weaponName;
-    }
-    public void setWeaponName(String weaponName) {
-        this.weaponName = weaponName;
-    }
+        return weapon.getDefaultName();
+    } 
+
     public int getAtk() {
         return Atk;
     }
+
     public void setAtk(int atk) {
         Atk = atk;
     }

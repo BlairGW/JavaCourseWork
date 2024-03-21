@@ -1,4 +1,5 @@
-import javax.swing.JOptionPane;
+import userClasses.Weapons;
+
 public class BattleManager {
 
   //Method for selecting the provided enemy types
@@ -13,13 +14,13 @@ public class BattleManager {
     if (rand == 1) {
       //Could add randomisation for some of these fields to make more fun
       //Initalises enemy to allow for fight with Their given data
-      enemy = new Enemy("Evil Orc", 25, "Fists", 5, "Sword of the Kings Cross");
+      enemy = new Enemy("Evil Orc", 25, "Fists", 5, Weapons.SWORD.getWeaponString());
     } else if (rand == 2) {
       //Initalises enemy to allow for fight with Their given data
-      enemy = new Enemy("Dark Mage", 15, "Fireball", 15, "Bow of God");
+      enemy = new Enemy("Dark Mage", 15, "Fireball", 15, Weapons.BOW.getWeaponString());
     } else {
       //Initalises enemy to allow for fight with Their given data
-      enemy = new Enemy("Dark Knight", 32, "Sword", 10, "Fire flames of hell");
+      enemy = new Enemy("Dark Knight", 32, "Sword", 10, Weapons.STAFF.getWeaponString());
     }
     //returns blank instance of enemy
 
@@ -36,7 +37,6 @@ public class BattleManager {
     } else if (enemy.Type.compareTo("Dark Knight") == 0) {
       Dialog.Encounter(player, enemy);
     }
-
   }
   //Method for allowing player and enemy to fight using constructor data
   public static void Fight(Player player, Enemy enemy) {
@@ -59,10 +59,10 @@ public class BattleManager {
       if (yourTurn == true) {
         if (Weakness(player, enemy) == true) {
           enemyHealth -= player.Atk * critical;
-          JOptionPane.showMessageDialog(null, "You CRITICALLY Hit Him, his remaning HP : " + enemyHealth);
+          Dialog.displayMessage("You got a CRITICAL hit on the " + enemy.Type + "\nEnemy's Remaining HP: " + enemyHealth);
         } else {
           enemyHealth -= player.Atk;
-          JOptionPane.showMessageDialog(null, "You Hit Him, his remaning HP : " + enemyHealth);
+          Dialog.displayMessage("You hit the " + enemy.Type + "\nEnemy's Remaining HP: " + enemyHealth);
         }
         //Sleep function
         try {
@@ -74,7 +74,7 @@ public class BattleManager {
         yourTurn = false;
       } else {
         yourHealth -= enemy.Atk;
-        JOptionPane.showMessageDialog(null, "YOUR HIT, Your remaning HP :  " + yourHealth);
+        Dialog.displayMessage("You have been hit\nYour Remaining HP: " + yourHealth);
         //Sleep function
         try {
           Thread.sleep(1200);
@@ -90,10 +90,10 @@ public class BattleManager {
     //Finds winner of fight
     if (enemyHealth <= 0) {
 
-      JOptionPane.showMessageDialog(null, enemy.Type + " Has been Defeated ");
+      Dialog.displayMessage("The " + enemy.Type + " has been Defeated");
     } else {
 
-      JOptionPane.showMessageDialog(null, player.Name + " Has been Defeated   G_G");
+      Dialog.displayMessage(player.Name + " Has been Defeated   G_G");
 
     }
 
@@ -113,27 +113,37 @@ public class BattleManager {
     int input;
     int pDice = 0;
     int eDice = 0;
-      //Depending on input value will depend on value, 0=Yes 1=No 2=Cancel
-        input = JOptionPane.showConfirmDialog(null, "Would you like to roll first ?");
+      //Depending on input value will depend on value, 0=Yes 1=No 2=Cancel (This was broken at some point so I fixed it)
+        input = Dialog.displayConfirmationMessage("Would you like to roll first ?");
     if (input == 0) {
       pDice = (int)(Math.random()*6 +1);
       eDice = (int)(Math.random()*6 +1);
+
+      if (pDice >= eDice) {
+        yourTurn = true;
+        Dialog.displayMessage("You won the roll, You get to attack first!");
+      }
+      else if(eDice >= pDice)
+      {
+        yourTurn = false;
+        Dialog.displayMessage("You lost the roll, You will get hit first    L   ");
+      }
+      else{System.out.println("failed");}
+      return yourTurn;
     }
-    else if(input == 1){
-      eDice = (int)(Math.random()*6 +1);
-      pDice = (int)(Math.random()*6 +1);
-    }
-    if (pDice >= eDice) {
-      yourTurn = true;
-      JOptionPane.showMessageDialog(null, "You won the roll, You get to attack first!");
-    }
-    else if(eDice >= pDice)
-    {
+    else if (input == 1){ 
+      Dialog.displayMessage("Okay then, You will get hit first.");
       yourTurn = false;
-      JOptionPane.showMessageDialog(null, "You lost the roll, You will get hit first    L   ");
+      return yourTurn;
     }
-    else{System.out.println("failed");}
-    return yourTurn;
+    else {
+      System.out.println("Closing Game");
+      System.exit(0);
+      yourTurn = false;
+      return yourTurn;
+    }
+
+
   }
 
 
