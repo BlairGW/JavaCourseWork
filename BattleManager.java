@@ -14,13 +14,13 @@ public class BattleManager {
     if (rand == 1) {
       //Could add randomisation for some of these fields to make more fun
       //Initalises enemy to allow for fight with Their given data
-      enemy = new Enemy("Evil Orc", 25, "Fists", 5, Weapons.SWORD.getWeaponString());
+      enemy = new Enemy("Evil Orc", 25, "Fists", 5, Weapons.SWORD.getWeaponName());
     } else if (rand == 2) {
       //Initalises enemy to allow for fight with Their given data
-      enemy = new Enemy("Dark Mage", 15, "Fireball", 15, Weapons.BOW.getWeaponString());
+      enemy = new Enemy("Dark Mage", 15, "Fireball", 15, Weapons.BOW.getWeaponName());
     } else {
       //Initalises enemy to allow for fight with Their given data
-      enemy = new Enemy("Dark Knight", 32, "Sword", 10, Weapons.STAFF.getWeaponString());
+      enemy = new Enemy("Dark Knight", 32, "Sword", 10, Weapons.STAFF.getWeaponName());
     }
     //returns blank instance of enemy
 

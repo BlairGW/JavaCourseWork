@@ -41,9 +41,8 @@ public class Knight {
     }
 
     public String getWeaponName() {
-        return weapon.getDefaultName();
+        return weapon.getWeaponName();
     } 
-
     public int getAtk() {
         return Atk;
     }

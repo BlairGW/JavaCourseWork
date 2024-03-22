@@ -41,7 +41,7 @@ public class Mage {
     }
 
     public String getWeaponName() {
-        return weapon.getDefaultName();
+        return weapon.getWeaponName();
     } 
 
     public int getAtk() {

@@ -11,7 +11,7 @@ public enum Weapons {
         this.weaponName = weaponName;
     }
 
-    public String getDefaultName() {
+    public String getWeaponName() {
         return weaponName;
     }
 }
